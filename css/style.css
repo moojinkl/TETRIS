@@ -6,6 +6,7 @@
 :root {
   --large: 36px;
 }
+
 ul {
   list-style: none;
 }
@@ -41,6 +42,27 @@ body {
   height: 25px;
   outline: 1px solid #ccc;
 }
+
 .tree {
   background: #67c23a;
+}
+
+.zee {
+  background: #e6a23c;
+}
+
+.square {
+  background: #ff92d7;
+}
+
+.bar {
+  background: salmon;
+}
+
+.elLeft {
+  background: #d690f4;
+}
+
+.elRight {
+  background: #16a085;
 }
