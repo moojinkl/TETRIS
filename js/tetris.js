@@ -1,3 +1,5 @@
+import BLOCKS from "./blocks.js";
+
 // DOM
 const playground = document.querySelector(".playground > ul");
 
@@ -11,35 +13,6 @@ let duration = 500;
 let downInterval;
 let tempMovigItem;
 
-const BLOCKS = {
-  tree: [
-    [
-      [2, 1],
-      [0, 1],
-      [1, 0],
-      [1, 1],
-    ],
-    [
-      [1, 2],
-      [0, 1],
-      [1, 0],
-      [1, 1],
-    ],
-    [
-      [1, 2],
-      [0, 1],
-      [2, 1],
-      [1, 1],
-    ],
-    [
-      [2, 1],
-      [1, 2],
-      [1, 0],
-      [1, 1],
-    ],
-  ],
-};
-
 const movingItem = {
   type: "tree",
   direction: 0,
@@ -52,7 +25,6 @@ init();
 // functions
 function init() {
   tempMovigItem = { ...movingItem };
-
   for (let i = 0; i < GAME_ROWS; i++) {
     prependNewLine();
   }
@@ -69,6 +41,7 @@ function prependNewLine() {
   li.prepend(ul);
   playground.prepend(li);
 }
+
 function renderBlocks(moveType = "") {
   const { type, direction, top, left } = tempMovigItem;
   const movingBlocks = document.querySelectorAll(".moving");
@@ -100,12 +73,29 @@ function renderBlocks(moveType = "") {
   movingItem.top = top;
   movingItem.direction = direction;
 }
+
 function seizeBlock() {
-  console.log("seize block");
+  const movingBlocks = document.querySelectorAll(".moving");
+  movingBlocks.forEach((moving) => {
+    moving.classList.remove("moving");
+    moving.classList.add("seized");
+  });
+  generateNewBlock();
+}
+
+function generateNewBlock() {
+  const blockArray = Object.entries(BLOCKS);
+  const randomIndex = Math.floor(Math.random() * blockArray.length);
+  movingItem.type = blockArray[randomIndex][0];
+  movingItem.top = 0;
+  movingItem.left = 3;
+  movingItem.direction = 0;
+  tempMovigItem = { ...movingItem };
+  renderBlocks();
 }
 
 function checkEmpty(target) {
-  if (!target) {
+  if (!target || target.classList.contains("seized")) {
     return false;
   }
   return true;
@@ -115,6 +105,7 @@ function moveBlock(moveType, amount) {
   tempMovigItem[moveType] += amount;
   renderBlocks(moveType);
 }
+
 function changeDirection() {
   const direction = tempMovigItem.direction;
   direction === 3
