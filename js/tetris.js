@@ -14,7 +14,7 @@ let downInterval;
 let tempMovigItem;
 
 const movingItem = {
-  type: "tree",
+  type: "",
   direction: 0,
   top: 0,
   left: 0,
@@ -28,7 +28,7 @@ function init() {
   for (let i = 0; i < GAME_ROWS; i++) {
     prependNewLine();
   }
-  renderBlocks();
+  generateNewBlock();
 }
 
 function prependNewLine() {
@@ -80,10 +80,32 @@ function seizeBlock() {
     moving.classList.remove("moving");
     moving.classList.add("seized");
   });
+  checkMatch();
+}
+
+function checkMatch() {
+  const childNodes = playground.childNodes;
+  childNodes.forEach((child) => {
+    let matched = true;
+    child.children[0].childNodes.forEach((li) => {
+      if (!li.classList.contains("seized")) {
+        matched = false;
+      }
+    });
+    if (matched) {
+      child.remove();
+      prependNewLine();
+    }
+  });
   generateNewBlock();
 }
 
 function generateNewBlock() {
+  clearInterval(downInterval);
+  downInterval = setInterval(() => {
+    moveBlock("top", 1);
+  }, duration);
+
   const blockArray = Object.entries(BLOCKS);
   const randomIndex = Math.floor(Math.random() * blockArray.length);
   movingItem.type = blockArray[randomIndex][0];
@@ -114,6 +136,12 @@ function changeDirection() {
   renderBlocks();
 }
 
+function dropBlock() {
+  clearInterval(downInterval);
+  downInterval = setInterval(() => {
+    moveBlock("top", 1);
+  }, 10);
+}
 // event handling
 document.addEventListener("keydown", (e) => {
   switch (e.keyCode) {
@@ -129,6 +157,8 @@ document.addEventListener("keydown", (e) => {
     case 38:
       changeDirection();
       break;
+    case 32:
+      dropBlock();
     default:
       break;
   }
