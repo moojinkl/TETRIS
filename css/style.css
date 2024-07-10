@@ -46,7 +46,7 @@ body {
 
 .playground ul {
   border: 1px solid #333;
-  width: 500px;
+  width: 370px;
   margin: 0 auto;
 }
 
@@ -69,26 +69,22 @@ body {
   background: #67c23a;
 }
 
-.zee {
-  background: #e6a23c;
-}
-
 .mieum {
-  background: #ff92d7;
+  background: #77b7ff;
 }
 
 .bar {
-  background: salmon;
+  background: rgb(255, 129, 66);
 }
 
 .digeut {
-  background: #d690f4;
+  background: #86cc6d;
 }
 
 .nieun {
-  background: #16a085;
+  background: #f9e168;
 }
 
 .giyeok {
-  background: black;
+  background: rgb(255, 153, 184);
 }
