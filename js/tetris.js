@@ -103,6 +103,7 @@ function checkMatch() {
     if (matched) {
       child.remove();
       prependNewLine();
+      score = "0";
       score++;
       scoreDisplay.innerText = score;
     }
@@ -182,5 +183,6 @@ document.addEventListener("keydown", (e) => {
 restartButton.addEventListener("click", () => {
   playground.innerHTML = "";
   gameText.style.display = "none";
+  scoreDisplay.textContent = "0";
   init();
 });

@@ -14,6 +14,7 @@ ul {
 body {
   height: 100%;
   overflow: hidden;
+  background-color: rgb(255, 212, 219);
 }
 
 .game-text {
@@ -45,7 +46,8 @@ body {
 }
 
 .playground ul {
-  border: 1px solid #333;
+  background-color: white;
+  /* border: 1px solid #333; */
   width: 370px;
   margin: 0 auto;
 }
