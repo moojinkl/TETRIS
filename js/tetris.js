@@ -90,7 +90,6 @@ function seizeBlock() {
   });
   checkMatch();
 }
-setTimeout(seizeBlock, 500);
 
 function checkMatch() {
   const childNodes = playground.childNodes;
