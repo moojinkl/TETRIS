@@ -8,7 +8,8 @@
   --small: 18px;
 }
 
-ul {
+ul,
+li {
   list-style: none;
 }
 
@@ -73,7 +74,6 @@ body {
 
 .playground {
   margin: 20px 0;
-  padding-bottom: ;
 }
 
 .playground ul {
@@ -121,6 +121,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   font-size: var(--small);
+}
+
+.next-block li {
+  box-shadow: 5px 5px rgb(255, 0, 0);
 }
 
 .game-text {
